@@ -723,7 +723,7 @@ export default function Home() {
             {/* Team Section */}
             <div className="mt-20">
               <h2 className="text-3xl font-bold mb-12">Equipo</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
                 <TeamMember
                   name="Matías Ferrari"
                   position="Presidente"
@@ -751,6 +751,13 @@ export default function Home() {
                   credentials="Abogado UCA"
                   experience=""
                   imageSrc="/team/ignacio-iribas.png"
+                />
+                <TeamMember
+                  name="Juan María Peral"
+                  position="Director Contable"
+                  credentials="Contador UADE"
+                  experience="Deloitte"
+                  imageSrc="/male-accountant-headshot.png"
                 />
               </div>
             </div>
