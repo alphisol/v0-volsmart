@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { useForm } from "react-hook-form"
+import { useLanguage } from "@/contexts/language-context"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -18,6 +19,7 @@ interface FormValues {
 }
 
 export function ContactForm() {
+  const { t } = useLanguage()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const {
     register,
@@ -33,8 +35,8 @@ export function ContactForm() {
     await new Promise((resolve) => setTimeout(resolve, 1500))
 
     toast({
-      title: "Formulario enviado",
-      description: "Nos pondremos en contacto contigo a la brevedad.",
+      title: t("form-sent"),
+      description: t("contact-soon"),
     })
 
     reset()
@@ -44,32 +46,32 @@ export function ContactForm() {
   return (
     <Card className="bg-gray-900 border-gray-800">
       <CardHeader>
-        <CardTitle>Formulario de contacto</CardTitle>
-        <CardDescription>Completa el formulario y nos pondremos en contacto contigo.</CardDescription>
+        <CardTitle>{t("contact-form")}</CardTitle>
+        <CardDescription>{t("form-description")}</CardDescription>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="name">Nombre completo</Label>
+            <Label htmlFor="name">{t("full-name")}</Label>
             <Input
               id="name"
-              placeholder="Tu nombre"
-              {...register("name", { required: "El nombre es requerido" })}
+              placeholder={t("your-name")}
+              {...register("name", { required: t("name-required") })}
               className="bg-gray-800 border-gray-700"
             />
             {errors.name && <p className="text-sm text-red-500">{errors.name.message}</p>}
           </div>
           <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
+            <Label htmlFor="email">{t("email")}</Label>
             <Input
               id="email"
               type="email"
-              placeholder="tu@email.com"
+              placeholder={t("your-email")}
               {...register("email", {
-                required: "El email es requerido",
+                required: t("email-required"),
                 pattern: {
                   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                  message: "Email inválido",
+                  message: t("invalid-email"),
                 },
               })}
               className="bg-gray-800 border-gray-700"
@@ -77,7 +79,7 @@ export function ContactForm() {
             {errors.email && <p className="text-sm text-red-500">{errors.email.message}</p>}
           </div>
           <div className="space-y-2">
-            <Label htmlFor="phone">Teléfono (opcional)</Label>
+            <Label htmlFor="phone">{t("phone-optional")}</Label>
             <Input
               id="phone"
               placeholder="+54 11 1234-5678"
@@ -86,18 +88,18 @@ export function ContactForm() {
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="message">Mensaje</Label>
+            <Label htmlFor="message">{t("message")}</Label>
             <Textarea
               id="message"
-              placeholder="¿En qué podemos ayudarte?"
+              placeholder={t("message-placeholder")}
               rows={4}
-              {...register("message", { required: "El mensaje es requerido" })}
+              {...register("message", { required: t("message-required") })}
               className="bg-gray-800 border-gray-700"
             />
             {errors.message && <p className="text-sm text-red-500">{errors.message.message}</p>}
           </div>
           <Button type="submit" className="w-full bg-blue-800 hover:bg-blue-700" disabled={isSubmitting}>
-            {isSubmitting ? "Enviando..." : "Enviar mensaje"}
+            {isSubmitting ? t("sending") : t("send-message")}
           </Button>
         </form>
       </CardContent>

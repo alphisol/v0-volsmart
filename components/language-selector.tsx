@@ -1,12 +1,12 @@
 "use client"
 
-import { useState } from "react"
 import { ChevronDown } from "lucide-react"
+import { useLanguage } from "@/contexts/language-context"
 
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 
 export function LanguageSelector() {
-  const [language, setLanguage] = useState("ES")
+  const { language, setLanguage } = useLanguage()
 
   return (
     <DropdownMenu>

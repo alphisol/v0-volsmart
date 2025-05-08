@@ -1,5 +1,8 @@
+"use client"
+
 import Link from "next/link"
 import { Layers, BarChart, FileCheck, LineChart, type LucideIcon } from "lucide-react"
+import { useLanguage } from "@/contexts/language-context"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
@@ -11,6 +14,7 @@ interface ServiceCardProps {
 }
 
 export function ServiceCard({ title, description, icon }: ServiceCardProps) {
+  const { t } = useLanguage()
   const icons: Record<string, LucideIcon> = {
     Layers,
     BarChart,
@@ -33,7 +37,7 @@ export function ServiceCard({ title, description, icon }: ServiceCardProps) {
       <CardFooter>
         <Link href={`/#${slug}`}>
           <Button variant="link" className="px-0 text-blue-400 hover:text-blue-300">
-            Conocé más
+            {t("know-more")}
           </Button>
         </Link>
       </CardFooter>
